@@ -13,24 +13,25 @@ const XLogin = () => {
     setPassword(e.target.value);
   };
 
-  const handleLogin = () => {
-    if (username.trim() === '' || password.trim() === '') {
-      setMessage('Please enter both username and password.');
-    } else if (username === 'user' && password === 'password') {
-      setMessage(`Welcome, ${username}`);
+  const handleSubmit = (e) => {
+    e.preventDefault(); // Prevents the default form submission behavior
+
+    if (username === 'user' && password === 'password') {
+      setMessage(`Welcome, ${username}!`);
     } else {
       setMessage('Invalid username or password');
     }
   };
 
   return (
-    <div className="login-form">
+    <form className="login-form" onSubmit={handleSubmit}>
       <label>
         Username:
         <input
           type="text"
           value={username}
           onChange={handleUsernameChange}
+          required
         />
       </label>
       <br />
@@ -40,12 +41,13 @@ const XLogin = () => {
           type="password"
           value={password}
           onChange={handlePasswordChange}
+          required
         />
       </label>
       <br />
-      <button onClick={handleLogin}>Login</button>
+      <button type="submit">Submit</button>
       <p>{message}</p>
-    </div>
+    </form>
   );
 };
 
