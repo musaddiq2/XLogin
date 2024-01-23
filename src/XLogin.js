@@ -5,49 +5,40 @@ const XLogin = () => {
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
 
-  const handleUsernameChange = (e) => {
-    setUsername(e.target.value);
-  };
-
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
-
   const handleSubmit = (e) => {
-    e.preventDefault(); // Prevents the default form submission behavior
-
+    e.preventDefault();
     if (username === 'user' && password === 'password') {
-      setMessage(`Welcome, ${username}!`);
+      setMessage('Welcome, user!');
     } else {
       setMessage('Invalid username or password');
     }
   };
 
   return (
-    <form className="login-form" onSubmit={handleSubmit}>
-      <label>
-        Username:
+    <div>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="username">Username:</label>
         <input
           type="text"
+          id="username"
           value={username}
-          onChange={handleUsernameChange}
+          onChange={(e) => setUsername(e.target.value)}
           required
         />
-      </label>
-      <br />
-      <label>
-        Password:
+        <br />
+        <label htmlFor="password">Password:</label>
         <input
           type="password"
+          id="password"
           value={password}
-          onChange={handlePasswordChange}
+          onChange={(e) => setPassword(e.target.value)}
           required
         />
-      </label>
-      <br />
-      <button type="submit">Submit</button>
-      <p>{message}</p>
-    </form>
+        <br />
+        <button type="submit">Submit</button>
+      </form>
+      {message && <p>{message}</p>}
+    </div>
   );
 };
 
