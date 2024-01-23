@@ -1,43 +1,12 @@
-import logo from "./logo.svg";
-import "./App.css";
-import { useState } from "react";
-function App() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [message, setMessage] = useState("");
-
-  const handleLogin = () => {
-    if (username === "user" && password === "password") {
-      setMessage(`Welcome, ${username}`);
-    } else {
-      setMessage("Invalid username or password");
-    }
-  };
-
+import React from 'react';
+import XLogin from './XLogin'; 
+const App = () => {
   return (
-    <div className="login-form">
-      <label>
-        Username:
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-      </label>
-      <br />
-      <label>
-        Password:
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </label>
-      <br />
-      <button onClick={handleLogin}>Login</button>
-      <p>{message}</p>
+    <div>
+      <h1>Welcome to XLogin App</h1>
+      <XLogin />
     </div>
   );
-}
+};
 
 export default App;
